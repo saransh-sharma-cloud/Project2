@@ -1,0 +1,10 @@
+body{
+    background-color:#eee;
+    font-size: 25px;
+}
+.wrapper{
+    width:400px;
+    margin:0 auto;
+    background-color:#fff;
+    padding:20px;
+}
