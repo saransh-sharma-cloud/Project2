@@ -1,3 +1,5 @@
 node_modules
 
 restfulapi/node_modules
+
+.env

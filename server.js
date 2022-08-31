@@ -234,5 +234,48 @@
     //     res.render('about')
     // })
     // app.listen(3000)
+    require('dotenv').config()
+    const express = require('express');
+    const app = express()
+    const mongoose = require('mongoose');
+    const authRoutes = require('./routes/authRoutes')
+    const port = process.env.PORT || 3000
+    const path = require('path')
+    const cookieParser = require('cookie-parser')
+    mongoose.connect("mongodb://localhost:27017/jwt",{
 
+    }).then(() => {
+        console.log('connection is successfull')
+    }).catch((e) => {
+        console.log('err', e)
+        console.log('No connecton')
     
+    })
+
+    //  console.log(process.env.SECRET_KEY)
+    //middleware
+    app.use(express.json());
+    app.use(cookieParser());
+     
+    app.set('views', path.join(__dirname,'views'))
+          app.set('view engine','ejs')
+
+    app.listen(port, () => {
+        console.log(`conneciton is setup at ${port}`)
+    })
+
+    app.use(authRoutes)
+
+    //cookies
+    // app.get('/set-cookies',(req,res) => {
+    // res.cookie('newUser',false)
+    // res.cookie('isEmployee',false,{maxAge: 360000},{httpOnly:true})
+    //  res.send('you got the cookie')
+    // });
+
+    // app.get('/read-cookies',(req,res) => {
+    //     const cookies = req.cookies;
+    //     console.log(cookies);
+
+    //     res.json(cookies)
+    // })
